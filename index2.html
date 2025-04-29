@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototipos Interactivos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #000;
+      background-image: url('https://cdn.pixabay.com/photo/2012/10/26/02/58/map-63036_1280.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      animation: text-show 1s ease-in-out forwards;
+    }
+
+    @keyframes text-show {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: 100vh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .card {
+      flex: 0 0 50vw;
+      scroll-snap-align: center;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem;
+      transition: transform 0.4s ease, flex 0.4s ease;
+      text-align: center;
+      margin: 1rem;
+      border-radius: 16px;
+      transform: scale(0.8);
+      cursor: pointer;
+      max-height: 90vh;
+      overflow-y: hidden;
+      scrollbar-width: none;
+    }
+
+    .card::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card.active {
+      transform: scale(1.05);
+      flex: 0 0 90vw;
+      z-index: 1;
+      background: rgba(0,0,0,0.9);
+      box-shadow: 0 0 20px #00dfd8;
+    }
+
+    .card h2 {
+      font-size: 2rem;
+      color: #00dfd8;
+      margin-bottom: 1rem;
+    }
+
+    .card-content {
+      opacity: 0;
+      max-height: 0;
+      overflow-y: auto;
+      transition: opacity 0.5s ease, max-height 0.5s ease;
+      text-align: left;
+      padding-right: 0.5rem;
+    }
+
+    .card-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card.active .card-content {
+      opacity: 1;
+      max-height: 1000px;
+      margin-top: 1rem;
+    }
+
+    .card-content p {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .card-content p img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      margin-bottom: 1rem;
+    }
+
+    .card img.tool-icon {
+      width: 80px;
+      margin: 0.5rem auto;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: #ccc;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Prototipos Interactivos</h1>
+  </header>
+  <main class="container">
+    <div class="card" onclick="toggleZoom(this)">
+      <h2>¿Qué es un prototipo interactivo?</h2>
+      <div class="card-content">
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png" alt="Interacción">Un prototipo interactivo es una versión funcional básica de una app o web. Simula cómo se verá y se comportará un producto antes de ser desarrollado.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/1043/1043488.png" alt="Evaluación">Sirve para hacer pruebas de experiencia de usuario, identificar errores de diseño y hacer mejoras antes del lanzamiento.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Comunicación">Facilita la comunicación entre diseñadores, desarrolladores y clientes.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleZoom(this)">
+      <h2>Herramientas más utilizadas</h2>
+      <div class="card-content">
+        <p>Algunas herramientas clave:</p>
+        <ul>
+          <li>Figma<br><img class="tool-icon" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma"></li>
+          <li>Adobe XD<br><img class="tool-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg" alt="Adobe XD"></li>
+          <li>InVision<br><img class="tool-icon" src="https://images.icon-icons.com/2429/PNG/512/invision_logo_icon_147275.png" alt="InVision"></li>
+          <li>Sketch<br><img class="tool-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/59/Sketch_Logo.svg" alt="Sketch"></li>
+          <li>Marvel<br><img class="tool-icon" src="https://edutools.tec.mx/sites/default/files/styles/large/public/2021-12/marvel-app%20-%20Rosa%20Linda%20Lo%CC%81pez%20Enri%CC%81quez.png?itok=kH6MFKpA" alt="Marvel"></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleZoom(this)">
+      <h2>Ventajas</h2>
+      <div class="card-content">
+        <p><img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Prueba">Permite realizar pruebas con usuarios antes del desarrollo final.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/3468/3468081.png" alt="Ahorro">Reduce costos al detectar errores temprano.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4205/4205782.png" alt="Feedback">Facilita el feedback y mejora continua del producto.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleZoom(this)">
+      <h2>Desventajas</h2>
+      <div class="card-content">
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4300/4300753.png" alt="Tiempo">Puede requerir tiempo y curva de aprendizaje en herramientas.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4509/4509554.png" alt="Limitación">Algunos prototipos no simulan funcionalidades complejas con precisión.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/595/595067.png" alt="Expectativa">Puede generar expectativas que no se cumplan en el producto final.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleZoom(this)">
+      <h2>Importancia en UX/UI</h2>
+      <div class="card-content">
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4201/4201125.png" alt="UX">Mejora la experiencia de usuario al permitir validar ideas antes de codificar.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4712/4712101.png" alt="Diseño">Ayuda a alinear diseño e intención del producto desde etapas tempranas.</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/4756/4756776.png" alt="Iteración">Facilita iteraciones rápidas con bajo costo.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleZoom(this)">
+      <h2>Reflexión</h2>
+      <div class="card-content">
+        <p><img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Cita">"Es preferible un clic a tiempo que corregir mil líneas de código después."</p>
+        <p><img src="https://cdn-icons-png.flaticon.com/512/8103/8103656.png" alt="Conclusión">Los prototipos no solo son bocetos interactivos, son una forma de pensar y crear centrado en el usuario.</p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>Hecho  por Joel y Abraham</p>
+  </footer>
+  <script>
+    function toggleZoom(card) {
+      const allCards = document.querySelectorAll('.card');
+      const isActive = card.classList.contains('active');
+      allCards.forEach(c => {
+        c.classList.remove('active');
+      });
+      if (!isActive) {
+        card.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
